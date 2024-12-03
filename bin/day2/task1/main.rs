@@ -4,55 +4,23 @@ use std::io::{BufRead,BufReader};
 
 fn main()  -> std::io::Result<()> {
     println!("Day 2: Task1");
-    let file = File::open("bin/day2/task1/input.txt")?;
+    let file = File::open("bin/day2/input.txt")?;
     let reader = BufReader::new(file); 
 
     let mut found_safe = 0u32;
     for line in reader.lines() { 
         let line = line?; 
-        let mut values = line.split_whitespace();
-        let mut last_number = 0i32;
-        let mut is_safe = true;
-        if let Some(value) = values.next() {
-            if let Ok(num) = value.parse::<i32>(){
-                last_number = num;
-            }
-            else {
-                is_safe = false;
-            }
-        }
-        
-        let mut current_number = 0i32;
-        if let Some(value) = values.next() {
-            if let Ok(num) = value.parse::<i32>(){
-                current_number = num;
-            }
-        }
-        let mut difference = current_number - last_number;
-        
-        last_number = current_number;
-
-        for value in values {
-            if let Ok(num) = value.parse::<i32>(){
-                current_number = num;
-            }
-            let diff = current_number - last_number;
-            if diff.signum() != difference.signum() {
-                is_safe = false;
-                break;
-            }
-            difference = diff;
-            if diff.abs() == 0 || diff.abs() > 3i32{
-                is_safe = false;
-                break;
-            }
-            last_number = current_number;
-        }
+        let levels: Vec<i32> = line.split_whitespace().map(|e| e.parse::<i32>().unwrap()).collect();
+        let has_correct_distance = levels.windows(2).map(|e| (e[1] - e[0]).abs()).all(|num| num >= 1 && num <= 3);
+        let directions: Vec<i32> = levels.windows(2).map(|e| (e[1] - e[0]).signum()).collect();
+        let all_ones = directions.iter().all(|e| *e == 1);
+        let all_neg_ones = directions.iter().all(|e| *e == -1);
+        let is_monton = all_ones || all_neg_ones;
+        let is_safe = has_correct_distance && is_monton;
         if is_safe {
-            found_safe += 1;
-            println!("{}: {}",line, is_safe)
+            found_safe += 1
         }
-        println!("{}",is_safe)
+        println!("{:?}",levels)
     }
     
     println!("No. of Safes: {}",found_safe);
