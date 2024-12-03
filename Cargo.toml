@@ -1,0 +1,29 @@
+cargo-features = ["edition2024"]
+[package]
+name = "rust_submissions"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+regex = "1.11.1"
+
+
+[[bin]]
+name="day1_1"
+path="bin/day1/task1/main.rs"
+
+[[bin]]
+name="day1_2"
+path="bin/day1/task2/main.rs"
+
+[[bin]]
+name="day2_1"
+path="bin/day2/task1/main.rs"
+
+[[bin]]
+name="day3_1"
+path="bin/day3/task1/main.rs"
+
+[[bin]]
+name="day3_2"
+path="bin/day3/task2/main.rs"
