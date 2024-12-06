@@ -36,3 +36,6 @@ path="bin/day3/task2/main.rs"
 name="day4_1"
 path="bin/day4/task1/main.rs"
 
+[[bin]]
+name="day4_2"
+path="bin/day4/task2/main.rs"
