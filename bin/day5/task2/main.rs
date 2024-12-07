@@ -67,9 +67,55 @@ fn main()  -> std::io::Result<()> {
 
     let mut sum = 0u32;
     for input in input_incorect {
-        let c
-        println!("{}",input[(input.len()-1)/2]);
-        sum += input[(input.len()-1)/2];
+        let mut indices = HashMap::new();
+        let mut previous = Vec::new();
+        //let mut afters = Vec::new();
+        for (index, num) in input.iter().enumerate() {
+            indices.insert(*num, index);
+            previous.push(Vec::<u32>::new());
+            //afters.push(Vec::<u32>::new());
+        }
+        for rule in &rules {
+            let deps  = (indices.get(&rule.0), indices.get(&rule.1));
+            if deps.0.is_none() || deps.1.is_none() {
+                continue;
+            }
+            previous[*deps.1.unwrap()].push(rule.0);
+            //afters[*deps.0.unwrap()].push(rule.1);
+        }
+        // println!("{:?}", previous);
+        //println!("{:?}", afters);
+        let mut input_sorted = Vec::new();
+
+        let mut is_imperfect = true;
+        while is_imperfect {
+            is_imperfect = false;
+            for num in input.iter(){
+                if input_sorted.contains(num) {
+                    continue;
+                }
+                let prev = &mut previous[*indices.get(num).unwrap()];
+                let mut remove_idx = Vec::new();
+                for index in 0..prev.len(){
+                    if input_sorted.contains(&prev[index]){
+                        remove_idx.push(index);
+                    }
+                }
+                for i in 0..remove_idx.len() {
+                    prev.remove(remove_idx[remove_idx.len() - i -1]);
+                }
+                //println!("{}: {:?}", num, prev);
+                if prev.len() == 0 {
+                    input_sorted.push(*num);
+                }
+                else{
+                    is_imperfect = true
+                }
+            }
+        }
+        //print!("{:?}: ", input_sorted);
+        //println!("{}",input_sorted[(input_sorted.len()-1)/2]);
+        sum += input_sorted[(input_sorted.len()-1)/2];
     }
     println!("{}", sum);
     Ok(())
