@@ -102,6 +102,11 @@ fn main()  -> std::io::Result<()> {
             }
         }
     }
+    if is_debug {
+
+    } else {
+        assert_eq!(obstacles_new_loop.len(), 1721);
+    }
 
     // 3,6
     // 6,7
