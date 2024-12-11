@@ -92,3 +92,7 @@ path="bin/day10/task2/main.rs"
 [[bin]]
 name="day11_1"
 path="bin/day11/task1/main.rs"
+
+[[bin]]
+name="day11_2"
+path="bin/day11/task2/main.rs"
