@@ -6,6 +6,7 @@ edition = "2024"
 
 [dependencies]
 regex = "1.11.1"
+nalgebra = "0.33.2"
 
 
 [[bin]]
@@ -103,3 +104,7 @@ path="bin/day12/task1/main.rs"
 [[bin]]
 name="day12_2"
 path="bin/day12/task2/main.rs"
+
+[[bin]]
+name="day13_1"
+path="bin/day13/task1/main.rs"
