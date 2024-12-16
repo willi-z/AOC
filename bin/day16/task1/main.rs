@@ -194,7 +194,7 @@ fn _print_path(path:&Vec<usize>, map: &Map) {
 }
 
 fn main() -> std::io::Result<()> {
-    println!("Day 15: Task1");
+    println!("Day 16: Task1");
     let is_debug = false;
     let file : File;
     if is_debug {
