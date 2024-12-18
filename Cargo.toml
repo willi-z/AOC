@@ -140,3 +140,11 @@ path="bin/day16/task2/main.rs"
 [[bin]]
 name="day17_1"
 path="bin/day17/task1/main.rs"
+
+[[bin]]
+name="day17_2"
+path="bin/day17/task2/main.rs"
+
+[[bin]]
+name="day18_1"
+path="bin/day18/task1/main.rs"
